@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="student" name="student" class="edu.spring.mod1.beans1.Student" scope="prototype">
+		<property name="fname" value="testFirstName"/>
+		<property name="lname" value="testLastName"/>
+		<property name="age" value="30"/>
+		<property name="location" value="Maryland"/>
+	</bean>
+	<bean id="course" name="course" class="edu.spring.mod1.beans1.Course" scope="prototype" init-method="initialize" destroy-method="destroy">
+		<property name="courseName" value="SampleCourse1"/>
+		<property name="startDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2017-01-01" />
+			</bean>
+		</property>
+		<!-- <property name="finishDate" value="2017-03-01"/>-->
+		<property name="institutionName" value="TestInstitution"/>
+		<property name="instructorName" value="TestInstructor"/>
+		<property name="fee" value="200.10"/>
+	</bean>
+	<bean name="enrollment" class="edu.spring.mod1.beans1.Enrollment">
+		<property name="student" ref="student"/>
+		<property name="course" ref="course"/>
+	</bean>
+	
+	
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+	
+</beans>

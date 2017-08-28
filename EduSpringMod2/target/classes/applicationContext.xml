@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:annotation-config></context:annotation-config>
+	
+	<bean id="student" name="student" class="edu.spring.mod2.beans1.Student" autowire="byName">
+		<property name="name" value="test name"></property>
+		<property name="year" value="2011"></property>
+	</bean>
+	<bean id="hostel" name="hostel" class="edu.spring.mod2.beans1.Hostel">
+		<property name="hostelName" value="NYC Hostel"></property>
+	</bean>
+
+</beans>

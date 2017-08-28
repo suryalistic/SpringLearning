@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<bean id="loginService" name="loginService" class="edu.spring.mod3.service.LoginService"/>
+	<bean id="userServiceImpl" name="userServiceImpl" class="edu.spring.mod3.service.UserServiceImpl"/>
+	<bean id="methodBeforeAdvisor" name="methodBeforeAdvisor" class="edu.spring.mod3.aspect.MethodBeforeAdvisor"/>
+	<bean id="methodAfterAdisor" name="methodAfterAdisor" class="edu.spring.mod3.aspect.MethodAfterAdvisor"/>
+	<bean id="methodAroundAdvisor" name="methodAroundAdvisor" class="edu.spring.mod3.aspect.MethodAroundAdvisor"/>
+	<bean id="exceptionHandlingAdvisor" name="exceptionHandlingAdvisor" class="edu.spring.mod3.aspect.ExeptionHandlerAdvisor"/>
+	<bean id="userProxy" name="userProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="userServiceImpl"/>
+		<property name="interceptorNames">
+			<list>
+				<value>methodBeforeAdvisor</value>
+				<value>methodAfterAdisor</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="loginProxy" name="loginProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="loginService"/>
+		<property name="interceptorNames">
+			<list>
+				<value>methodAroundAdvisor</value>
+				<value>exceptionHandlingAdvisor</value>
+			</list>
+		</property>
+	</bean>
+</beans>

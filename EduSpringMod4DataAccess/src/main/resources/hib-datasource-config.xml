@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<import resource="datasource-config.xml"/>
+	<bean id="hibSessionFactory" name="hibSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="mappingResources">
+			<list>
+				<value>edu/spring/mod4/hib/properties/HibUser.hbm.xml</value>	
+			</list>
+		</property>
+		<property name="dataSource" ref="datasource"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+	<bean name="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hibSessionFactory" />
+	</bean>
+	<bean  name="hibTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="hibSessionFactory"/>
+	</bean>
+</beans>
