@@ -1,4 +1,4 @@
-package edu.surya.bbt;
+package edu.surya.inter;
 
 import java.util.Arrays;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package edu.surya.bbt;
+package edu.surya.inter;
 
 public class ProgramCreekTest {
 

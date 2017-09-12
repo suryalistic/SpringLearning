@@ -39,6 +39,10 @@ public class Java8Features {
 		DummyInterface2 d2 = System.out::println;
 		d2.nonn("dummy string");
 		
+		//lambda with types
+		DummyInterface d3 = (String s1, String s2) -> {System.out.println(s1+","+s2); return "dummy";};
+		d3.summ("suryam","surya");
+		
 		
 	}
 	
